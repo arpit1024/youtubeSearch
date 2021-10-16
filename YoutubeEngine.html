@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+            *{
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            hr{
+                background-color: #464646;
+                height: 1px;
+                border: none;
+            }
+            #navbar{
+                background-color: #212121;
+                height: 80px;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+            }
+            .menu-bars{
+                margin-left: 2rem;
+                font-size: 2rem;
+                color: #fff;
+            }
+            #nav-menu{
+                background-color: #212121;
+                width: 250px;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                position: fixed;
+                top: 0;
+                left: -100%;
+                transition: 850ms;
+            }
+            #nav-menu.active{
+                left: 0;
+                transition: 350ms;
+            }
+            .nav-text{
+                display: flex;
+                justify-content: start;
+                list-style: none;
+                height: 50px;
+                padding: 1rem;
+            }
+            .nav-text a{
+                text-decoration: none;
+                color: #f5f5f5;
+                font-size: 1.2rem;
+                margin-left: 1rem;
+            }
+            .nav-text:hover{
+                background-color: rgb(144,144,144,0.219);
+                cursor: pointer;
+            }
+            .nav-menu-items{
+                width: 100%;
+            }
+            .nav-icon{
+                padding-right: 1rem;
+                color: #909090;
+            }
+            #youtube-logo{
+                color: #f90201;
+                padding-right: 0.2rem;
+            }
+            #navbar-toggle{
+                background-color: #212121;
+                width: 100%;
+                height: 100px;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+            }
+           
+             a{
+                text-decoration: none;
+            }
+            .fa-bars{
+                color: #fff;
+            }
+            .nav-section{
+                height: 200px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin-top: 50px;
+            }
+            #first{
+                display: flex;
+            }
+            #first a{
+                 line-height: 40px;
+                 color: #fff;
+                 font-family: 'Oswald', sans-serif;
+            }
+            #first i{
+                 line-height: 40px;
+            }
+            #first a h1{
+                 font-family: 'Oswald', sans-serif;
+            }
+            #header-youtube{
+                width: 200px;
+                  margin-left: 2%;
+            }
+            #header-youtube h2{
+                color: #fff;
+                font-family: 'Oswald',sans-serif;
+                font-weight: 500;
+            }
+           
+            #query{
+                margin-left: 8%;
+                width: 50;
+                width: 38%;
+                height: 38px;
+                font-size: 16px;
+                border:none;
+            }
+            #btn{
+                height: 40px;
+                width: 70px;
+                font-size: 20px;
+                background: rgb(144,144,144,0.219);
+            }
+            #cr,#apps,#noti{
+                font-size: larger;
+                background: rgb(144,144,144,0.219);
+                color: white;
+                margin-left: 10%;
+            }
+            #apps,#noti,#sign{
+                margin-left: 2%;
+            }
+            #sign{
+                height: 40px;
+                width: auto;
+                background: skyblue;
+                color: white;
+                border: none;
+                font-size: larger;
+            }
+
+            #videos{
+            max-width: 1300px;
+            display: grid;
+            grid-template-columns: 30% 30% 30%;
+            align-items: center;
+            justify-content: center;
+            }
+            #videos div{
+              margin: auto;
+            }
+            @media (max-width: 800px){
+                #videos{
+            display: grid;
+            grid-template-columns: 50% 50%;
+            align-items: center;
+            justify-content: center;
+            }
+          } 
+            @media (max-width: 500px){
+                #videos{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+              }
+            }
+            #trend{
+             margin: 10px 0 10px auto;
+             text-align: center;
+            }
+            #signOut
+            {
+                 width: fit-content;
+                 margin: 0 20px 0 auto;
+            }
+            #signOut >button
+            {
+                height: 30px;
+            }
+        </style>
+</head>
+
+<body>
+    
+    <div id="navbar">
+        <a href="#" class="menu-bars" id="show-menu">
+            <i class="fas fa-bars"></i>
+        </a>
+        <div id='header-youtube'>
+         <a href="#"><h2><i class="fab fa-youtube" id="youtube-logo"></i>Youtube</h2></a>
+        </div>
+     <input type="text" id="query" placeholder="Search" />
+     <button id='btn' onclick="searchVideos()"><i class="fa fa-search"></i></button>
+     <button id='cr'><i class="fa fa-camera-retro" ></i></button>
+     <button id='apps'><i class="fa fa-th"></i></button>
+     <button id='noti'><i class="fa fa-bell"></i></button>
+     <button id='sign' onclick="signIn()">SIGN IN</button>
+    </div>
+    <div id="signOut">
+        
+    </div>
+    <nav id= "nav-menu">
+        <ul class="nav-menu-items">
+            <div class="navbar-toggle">
+                <div id="first">
+                    <a href="#" class="menu-bars" id="hide-menu">
+                        <i class="fas fa-bars nav-icon"></i>
+                    </a>
+                    <i class="fab fa-youtube" id="youtube-logo"></i>
+                    <a href="#"><h1>Youtube</h1></a>
+                </div>
+                <hr/>
+                <div class="nav-section">
+                    <li class="nav-text"><a href="#"><i class="fas fa-home nav-icon">Home</i></a></li>                                                                                                                                                               
+                    <li class="nav-text"><a href="#"><i class="fas fa-fire nav-icon">Trending</i></a></li>                                                                                                                                                               
+                    <li class="nav-text"><a href="#"><i class="fab fa-youtube nav-icon">Subscriptions</i></a></li>
+
+                    <hr/>
+
+                     <li class="nav-text"><a href="#"><i class="fas fa-play-circle nav-icon">Library</i></a></li>                                                                                                                                                               
+                     <li class="nav-text"><a href="#"><i class="fas fa-history nav-icon">History</i></a></li>                                                                                                                                                               
+                     <li class="nav-text"><a href="#"><i class="fas fa-clock nav-icon">Watch Later</i></a></li>
+                    </div>                                                                                                                                                               
+                </div>
+            </div>
+        </ul>
+    </nav>
+    <h2 id="trend"></h2>
+    <div id="videos">
+     </div>
+   <script>
+        var openMenu = document.querySelector("#show-menu")
+        var sideMenu = document.querySelector("#nav-menu")
+        var hideMenuIcon = document.querySelector("#hide-menu")
+
+        function signOut()
+        {
+            localStorage.setItem("token", null)
+            localStorage.setItem("userNameYoutube", null)
+            let NameElement = document.getElementById("sign");
+
+            let signOut = document.getElementById("signOut");
+            signOut.innerHTML = ""
+            NameElement.innerHTML =""
+            NameElement.setAttribute("id","sign")
+            NameElement.innerText = "SignIn"
+            
+            window.location.href ="YoutubeEngine.html"
+        }
+
+ if(JSON.parse(localStorage.getItem("token")) == null || localStorage.getItem("token") == null)
+      {
+        
+      }
+      else{
+        let NameElement = document.getElementById("sign");
+        let token = JSON.parse(localStorage.getItem('token'));
+        let username = JSON.parse(localStorage.getItem('userNameYoutube'));
+
+        fetch(`https://masai-api-mocker.herokuapp.com/user/${username}`,{
+            
+            headers:{
+                "content-Type":"application/json",
+
+                Authorization:`Bearer ${token}`
+            }
+        }).then((res)=>{
+
+            return res.json();
+        }).then((res) =>{
+            console.log(res);
+            var Name =  res.name;
+
+            let signOt = document.getElementById("signOut");
+            let button = document.createElement("button");
+            button.innerText = "Sign Out";
+            signOt.append(button);
+
+            button.onclick = function(){
+                signOut();
+            }
+
+            NameElement.innerHTML =""
+            NameElement.textContent ="Hello "+ Name +"!";
+            NameElement.style.background = "transparent";
+        })
+      }
+        
+//         searchVideos();
+
+//         openMenu.addEventListener('click', function(){
+//             sideMenu.classList.add('active')
+//         })
+//         hideMenuIcon.addEventListener('click', function()
+//         {
+//             sideMenu.classList.remove('active')
+//         })
+
+//         async function searchVideos()
+//   {
+//       let query = document.getElementById("query").value;
+
+//       if(query == '')
+//       {
+//         let ele = document.getElementById('trend');
+//         ele.textContent = 'Trending Videos'
+//           query == "Trending"
+//       }
+//       else{
+//         let ele = document.getElementById('trend');
+//         ele.textContent = ""
+//       }
+//       let res = await fetch(
+//         `https://youtube.googleapis.com/youtube/v3/search?q=${query}=video&key=AIzaSyBCMFkBP0B8nwl4h9ekVwlH-rxUD886hxc&maxResults=20`
+//       );
+//     let data = await res.json();
+//     console.log('data: ', data)
+//     appendVideos(data.items)
+//   }
+  
+//   function appendVideos(video_data)
+//   {
+//     // video_data.forEach((data) => {
+//     //        console.log(data);
+//     //   });
+//     let videos = document.getElementById('videos')
+//     videos.innerHTML = ''
+//       video_data.forEach(({id: {videoId}}) => {
+//           let div = document.createElement('div');
+//           div.innerHTML = `<iframe width="100%" height="300px" src="https://www.youtube.com/embed/${videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+//           videos.append(div);
+//       });
+//   }
+
+  function signIn(){
+   window.location.href ="SignUp.html"
+  }
+
+    
+    </script>
+</body>
+
+</html>
